@@ -1,58 +1,91 @@
 Log:
-  Level: none # Log level: none, error, warning, info, debug 
+  Level: none 
   AccessPath: # /etc/XrayR/access.Log
   ErrorPath: # /etc/XrayR/error.log
-DnsConfigPath: # /etc/XrayR/dns.json # Path to dns config, check https://xtls.github.io/config/dns.html for help
-RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://xtls.github.io/config/routing.html for help
-InboundConfigPath: # /etc/XrayR/custom_inbound.json # Path to custom inbound config, check https://xtls.github.io/config/inbound.html for help
-OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/outbound.html for help
+DnsConfigPath: # /etc/XrayR/dns.json
+InboundConfigPath: # /etc/XrayR/custom_inbound.json
+RouteConfigPath: # /etc/XrayR/route.json
+OutboundConfigPath: # /etc/XrayR/custom_outbound.json
 ConnetionConfig:
-  Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 10 # Connection idle time limit, Second
-  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
-  BufferSize: 64 # The internal cache size of each connection, kB 
+  Handshake: 4 
+  ConnIdle: 30 
+  UplinkOnly: 2 
+  DownlinkOnly: 4 
+  BufferSize: 64 
 Nodes:
   -
-    PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel
+    PanelType: "V2board" 
     ApiConfig:
       ApiHost: "https://fast4g.net"
       ApiKey: "adminhoang9810a@fast4g.net"
       NodeID: 44
-      NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
-      Timeout: 30 # Timeout for the api request
-      EnableVless: false # Enable Vless for V2ray Type
-      EnableXTLS: false # Enable XTLS for V2ray and Trojan
-      SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
-      DeviceLimit: 3 # Local settings will replace remote settings, 0 means disable
-      RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
+      NodeType: V2ray 
+      Timeout: 30 
+      EnableVless: false 
+      EnableXTLS: false 
+      SpeedLimit: 0 
+      DeviceLimit: 2 
+      RuleListPath: # /etc/XrayR/rulelist
     ControllerConfig:
-      ListenIP: 0.0.0.0 # IP address you want to listen
-      SendIP: 0.0.0.0 # IP address you want to send pacakage
-      UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
-      EnableDNS: false # Use custom DNS config, Please ensure that you set the dns.json well
-      DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
-      DisableUploadTraffic: false # Disable Upload Traffic to the panel
-      DisableGetRule: false # Disable Get Rule from the panel
-      DisableIVCheck: false # Disable the anti-reply protection for Shadowsocks
-      DisableSniffing: true # Disable domain sniffing 
-      EnableProxyProtocol: false # Only works for WebSocket and TCP
-      EnableFallback: false # Only support for Trojan and Vless
-      FallBackConfigs:  # Support multiple fallbacks
+      DisableSniffing: True
+      ListenIP: 0.0.0.0 
+      SendIP: 0.0.0.0 
+      UpdatePeriodic: 60 
+      EnableDNS: false 
+      DNSType: AsIs 
+      EnableProxyProtocol: false 
+      EnableFallback: false 
+      FallBackConfigs:  
         -
-          SNI: # TLS SNI(Server Name Indication), Empty for any
-          Alpn: # Alpn, Empty for any
-          Path: # HTTP PATH, Empty for any
-          Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/fallback/ for details.
-          ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
+          SNI: 
+          Path: 
+          Dest: 80 
+          ProxyProtocolVer: 0 
       CertConfig:
-        CertMode: http # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        RejectUnknownSni: false # Reject unknown SNI
-        CertDomain: "180.93.172.95" # Domain to cert
-        CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
+        CertMode: none 
+        CertDomain: "vn.speed4g.me" 
+        CertFile: /etc/XrayR/cert/node1.test.com.cert 
         KeyFile: /etc/XrayR/cert/node1.test.com.key
-        Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
+        Provider: alidns 
         Email: test@me.com
-        DNSEnv: # DNS ENV option used by DNS provider
+        DNSEnv: 
           ALICLOUD_ACCESS_KEY: aaa
           ALICLOUD_SECRET_KEY: bbb
+  -
+    PanelType: "V2board" 
+    ApiConfig:
+      ApiHost: "https://fast4g.net"
+      ApiKey: "adminhoang9810a@fast4g.net"
+      NodeID: 26
+      NodeType: V2ray 
+      Timeout: 30 
+      EnableVless: false 
+      EnableXTLS: false 
+      SpeedLimit: 0 
+      DeviceLimit: 2 
+      RuleListPath: # /etc/XrayR/rulelist
+    ControllerConfig:
+      DisableSniffing: True
+      ListenIP: 0.0.0.0 
+      SendIP: 0.0.0.0 
+      UpdatePeriodic: 60 
+      EnableDNS: false 
+      DNSType: AsIs 
+      EnableProxyProtocol: false 
+      EnableFallback: false 
+      FallBackConfigs:  
+        -
+          SNI: 
+          Path: 
+          Dest: 80 
+          ProxyProtocolVer: 0 
+      CertConfig:
+        CertMode: file 
+        CertDomain: "loadiphcm.fast4g.net"
+        CertFile: /etc/XrayR/fast4g.crt 
+        KeyFile: /etc/XrayR/fast4g.key
+        Provider: cloudflare 
+        Email: test@me.com
+        DNSEnv: 
+          CLOUDFLARE_EMAIL: 
+          CLOUDFLARE_API_KEY: 
