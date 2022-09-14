@@ -1,0 +1,58 @@
+Log:
+  Level: none
+  AccessPath:
+  ErrorPath:
+DnsConfigPath:
+RouteConfigPath:
+InboundConfigPath:
+OutboundConfigPath:
+ConnetionConfig:
+  Handshake: 4
+  ConnIdle: 10
+  UplinkOnly: 2
+  DownlinkOnly: 4
+  BufferSize: 64
+Nodes:
+  -
+    PanelType: "V2board"
+    ApiConfig:
+      ApiHost: "https://skypn.fun"
+      ApiKey: "adminskypn@skypn.fun"
+      NodeID: 15
+      NodeType: V2ray
+      Timeout: 30
+      EnableVless: false
+      EnableXTLS: false
+      SpeedLimit: 0
+      DeviceLimit: 3
+      RuleListPath:
+    ControllerConfig:
+      ListenIP: 0.0.0.0
+      SendIP: 0.0.0.0
+      UpdatePeriodic: 60
+      EnableDNS: false
+      DNSType: AsIs
+      DisableUploadTraffic: false
+      DisableGetRule: false
+      DisableIVCheck: false
+      DisableSniffing: true
+      EnableProxyProtocol: false
+      EnableFallback: false
+      FallBackConfigs:
+        -
+          SNI: 
+          Alpn: 
+          Path: 
+          Dest: 80
+          ProxyProtocolVer: 0 
+      CertConfig:
+        CertMode: none 
+        RejectUnknownSni: false 
+        CertDomain: "103.75.184.242"
+        CertFile: /etc/XrayR/cert/node1.test.com.cert
+        KeyFile: /etc/XrayR/cert/node1.test.com.key
+        Provider: alidns 
+        Email: test@me.com
+        DNSEnv: 
+          ALICLOUD_ACCESS_KEY: aaa
+          ALICLOUD_SECRET_KEY: bbb
