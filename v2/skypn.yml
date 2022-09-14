@@ -18,7 +18,7 @@ Nodes:
     ApiConfig:
       ApiHost: "https://skypn.fun"
       ApiKey: "adminskypn@skypn.fun"
-      NodeID: 11
+      NodeID: 14
       NodeType: V2ray # Node type: V2ray, Trojan, Shadowsocks, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
@@ -48,7 +48,7 @@ Nodes:
       CertConfig:
         CertMode: http # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
         RejectUnknownSni: false # Reject unknown SNI
-        CertDomain: "128.199.115.184" # Domain to cert
+        CertDomain: "159.223.94.128" # Domain to cert
         CertFile: /etc/XrayR/cert/node1.test.com.cert # Provided if the CertMode is file
         KeyFile: /etc/XrayR/cert/node1.test.com.key
         Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
